@@ -1,0 +1,9 @@
+{
+  "name": "Atlas Personal Fitness Tracker",
+  "short_name": "Atlas",
+  "description": "Personal workout, vegetarian nutrition and transformation tracker.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#101713",
+  "theme_color": "#101713"
+}

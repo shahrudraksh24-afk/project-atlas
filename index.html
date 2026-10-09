@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101713">
+<title>Atlas — Personal Fitness</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--bg:#101713;--panel:#1c2720;--panel2:#253327;--text:#f0f5ee;--muted:#a7b5a8;--lime:#c9f36a;--blue:#83c9e8;--line:#354239}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 14px;background:var(--lime);color:#17220d;font-weight:700}button.secondary{background:#354239;color:var(--text)}button.danger{background:#512d2d;color:#ffe3e3}.wrap{max-width:900px;margin:auto;padding:16px}.header{display:flex;align-items:center;gap:12px;padding:12px 0 18px}.logo{width:48px;height:48px;border-radius:14px;background:var(--lime);color:#17220d;display:grid;place-items:center;font-size:26px;font-weight:900}.brand{font-weight:900;letter-spacing:2px;font-size:22px}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.card{background:var(--panel);border:1px solid #28362c;border-radius:16px;padding:14px;margin-bottom:12px}.stat .num{font-size:24px;font-weight:800;margin-top:4px}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:18px 0}.tabs button{background:var(--panel);color:var(--text);padding:10px 4px}.tabs button.active{background:var(--lime);color:#17220d}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.exercise{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.exercise:last-child{border-bottom:0}.exercise input{width:20px;height:20px;accent-color:var(--lime);margin-top:2px}.exercise label{flex:1}.exercise.done label{text-decoration:line-through;color:var(--muted)}input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#111a14;color:var(--text);margin-top:5px}label.field{display:block;color:var(--muted);font-size:13px;margin:10px 0}.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0 14px}.bar{height:100%;background:var(--lime);width:0%}h1,h2,h3,p{margin-top:0}h2{font-size:21px;margin-bottom:6px}h3{font-size:17px;margin-bottom:8px}.pill{display:inline-block;background:var(--panel2);color:var(--lime);padding:4px 8px;border-radius:99px;font-size:12px}.mealrow,.logrow{padding:10px 0;border-bottom:1px solid var(--line)}.mealrow:last-child,.logrow:last-child{border-bottom:0}.hidden{display:none}.notice{background:var(--panel2);border-radius:12px;padding:12px;color:#dce9d8;font-size:13px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:16px}@media(max-width:520px){.wrap{padding:12px}.stat .num{font-size:20px}.stats{gap:7px}.card{padding:12px}.tabs button{font-size:12px}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="header"><div class="logo">A</div><div><div class="brand">ATLAS</div><div class="small">YOUR PERSONAL TRANSFORMATION TRACKER</div></div><div style="margin-left:auto"><span class="pill">NATURAL · 12 MONTHS</span></div></header>
+<div class="stats">
+ <div class="card stat"><div class="small">STARTING WEIGHT</div><div class="num">65 kg</div><div class="small">Height: 170 cm</div></div>
+ <div class="card stat"><div class="small">CALORIE TARGET</div><div class="num">2,400</div><div class="small">Adjust to trends</div></div>
+ <div class="card stat"><div class="small">PROTEIN TARGET</div><div class="num">120 g</div><div class="small">Daily goal</div></div>
+</div>
+<nav class="tabs">
+<button class="active" data-tab="today">Today</button><button data-tab="workout">Workout</button><button data-tab="food">Nutrition</button><button data-tab="progress">Progress</button>
+</nav>
+<section id="today" class="pane">
+ <div class="card"><h2>Today's mission</h2><p class="muted">Train consistently. Recover properly. Repeat.</p><label class="field">Training day<select id="todayDay"></select></label><div class="row"><div><h3 id="todayWorkout">Push A</h3><div id="todayFocus" class="muted"></div></div><button id="openWorkout">Open workout</button></div></div>
+ <div class="card"><h3>Daily nutrition totals</h3><div class="row"><span>Calories</span><b id="calText">0 / 2,400 kcal</b></div><div class="progress"><div class="bar" id="calBar"></div></div><div class="row"><span>Protein</span><b id="proText">0 / 120 g</b></div><div class="progress"><div class="bar" id="proBar"></div></div><div class="grid2"><label class="field">Calories eaten<input id="dailyCalories" type="number" min="0" placeholder="e.g. 1800"></label><label class="field">Protein eaten (g)<input id="dailyProtein" type="number" min="0" placeholder="e.g. 95"></label></div><button id="saveNutrition">Save daily totals</button></div>
+ <div class="card"><div class="row"><h3>Hydration</h3><b id="waterCount">0 / 8 glasses</b></div><p class="small">One glass ≈ 250 ml; drink more with heat and exercise.</p><div class="row"><button class="secondary" id="waterMinus">−</button><button id="waterPlus">+ Add glass</button></div></div>
+ <div class="card"><h3>Daily reminders</h3><div class="notice">✓ Eat protein-rich meals · ✓ Get 7–9 hours of sleep · ✓ Use controlled technique · ✓ Rest when recovery is poor.</div></div>
+</section>
+<section id="workout" class="pane hidden">
+ <div class="card"><h2>Training room</h2><p class="muted">For your first two weeks, do two working sets per exercise. Leave 2–3 good reps in reserve.</p><label class="field">Choose day<select id="workoutDay"></select></label><div class="row"><div><h3 id="workoutTitle"></h3><div id="workoutFocus" class="muted"></div></div><span id="workoutCount" class="pill">0 / 0</span></div><div class="progress"><div id="workoutBar" class="bar"></div></div><div id="exerciseList"></div><button id="completeWorkout">Complete session</button><button class="secondary" id="resetWorkout">Reset checks</button></div>
+ <div class="notice">Progressive overload: when all sets reach the top of the rep range with good form, increase the weight slightly. Stop if you feel sharp pain.</div>
+</section>
+<section id="food" class="pane hidden">
+ <div class="card"><h2>Budget vegetarian nutrition</h2><p class="muted">No oats; no regular milk products. Yogurt is optional.</p><div class="mealrow row"><span>50 g dry soy chunks</span><b>~25 g protein</b></div><div class="mealrow row"><span>200 g cooked thick dal</span><b>~7–10 g</b></div><div class="mealrow row"><span>100 g cooked chana</span><b>~8–9 g</b></div><div class="mealrow row"><span>60 g dry besan</span><b>~12–13 g</b></div><p class="small">Approximate values; use food labels and actual portions where possible.</p></div>
+ <div class="card"><h3>Add a meal</h3><label class="field">Food / meal<input id="mealName" placeholder="e.g. soy chunks with rice"></label><div class="grid2"><label class="field">Calories<input id="mealCal" type="number" min="0" value="0"></label><label class="field">Protein (g)<input id="mealPro" type="number" min="0" value="0"></label></div><button id="addMeal">Add meal and update totals</button><div id="mealList"></div></div>
+ <div class="card"><h3>Simple Indian meal structure</h3><p>Breakfast: besan chilla, fruit and yogurt if desired.</p><p>Lunch: rice/roti, dal, soy chunks and salad.</p><p>Pre-workout: banana and roasted chana.</p><p>Dinner: roti/rice, dal, beans or soy chunks, vegetables.</p><div class="notice">Start around 2,400 kcal as an estimate, not a fixed requirement. Review weight averages, waist, energy and strength after 2–3 weeks before adjusting.</div></div>
+</section>
+<section id="progress" class="pane hidden">
+ <div class="card"><h2>Progress check-in</h2><p class="muted">Record trends, not just one day's weight.</p><div class="grid2"><label class="field">Weight (kg)<input id="weight" type="number" step="0.1" value="65"></label><label class="field">Waist (cm, optional)<input id="waist" type="number" step="0.1" placeholder="e.g. 78"></label></div><label class="field">Notes<textarea id="notes" rows="3" placeholder="Strength, sleep, energy, how clothes fit..."></textarea></label><button id="saveCheckin">Save check-in</button></div>
+ <div class="card"><div class="row"><h3>Saved check-ins</h3><button class="secondary" id="exportData">Export data</button></div><div id="checkinList"><p class="muted">Your journey starts here.</p></div></div>
+ <div class="card"><h3>Training history</h3><div id="sessionList" class="muted">No completed sessions yet.</div></div>
+ <div class="notice">Every four weeks, compare weekly average weight, waist, photos in similar lighting, and strength. This app stores data in this browser on this device; clearing browser data may erase it.</div>
+</section>
+<div class="footer">ATLAS · A simple, local-first fitness tracker · Not medical advice</div>
+</div>
+<script>
+const plans={
+ Monday:{name:"Push A",focus:"Chest · Shoulders · Triceps",ex:[["Dumbbell bench press","3 × 6–10"],["Incline machine press","3 × 8–12"],["Seated shoulder press","2 × 8–12"],["Lateral raises","3 × 12–20"],["Cable triceps pushdown","2 × 10–15"]]},
+ Tuesday:{name:"Pull A",focus:"Back · Biceps",ex:[["Lat pulldown","3 × 8–12"],["Seated cable row","3 × 8–12"],["Chest-supported row","2 × 10–12"],["Reverse fly","2 × 12–20"],["Dumbbell biceps curl","3 × 10–15"]]},
+ Wednesday:{name:"Legs A",focus:"Quads · Hamstrings · Calves · Core",ex:[["Leg press","3 × 8–12"],["Romanian deadlift","3 × 8–12"],["Leg curl","3 × 10–15"],["Leg extension","2 × 10–15"],["Calf raises","3 × 12–20"],["Plank","3 sets"]]},
+ Thursday:{name:"Push B",focus:"Chest · Shoulders · Triceps",ex:[["Incline dumbbell press","3 × 8–12"],["Machine chest press","3 × 8–12"],["Cable fly","2 × 12–15"],["Lateral raises","3 × 12–20"],["Overhead cable triceps extension","3 × 10–15"]]},
+ Friday:{name:"Pull B",focus:"Back · Biceps",ex:[["Assisted pull-ups or lat pulldown","3 × 8–12"],["One-arm cable row","3 × 8–12"],["Straight-arm pulldown","2 × 12–15"],["Reverse fly","3 × 12–20"],["Incline dumbbell curl","2 × 10–15"],["Hammer curl","2 × 10–15"]]},
+ Saturday:{name:"Legs B",focus:"Legs · Glutes · Abs",ex:[["Hack squat or goblet squat","3 × 8–12"],["Hip thrust","3 × 8–12"],["Leg curl","3 × 10–15"],["Bulgarian split squat","2 × 8–12 per leg"],["Calf raises","3 × 12–20"],["Reverse crunch","3 × 10–15"]]},
+ Sunday:{name:"Recovery day",focus:"Rest · Walking · Mobility",ex:[["Easy walk (optional)","30–45 minutes"],["Gentle mobility (optional)","5–10 minutes"]]}
+};
+const $=id=>document.getElementById(id);
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem("atlas_"+k))??d}catch{return d}};
+const save=(k,v)=>localStorage.setItem("atlas_"+k,JSON.stringify(v));
+let state={day:load("day","Monday"),checks:load("checks",{}),nutrition:load("nutrition",{cal:0,pro:0}),water:load("water",0),meals:load("meals",[]),checkins:load("checkins",[]),sessions:load("sessions",[])};
+function fillDays(el){el.innerHTML=Object.keys(plans).map(d=>`<option value="${d}">${d} · ${plans[d].name}</option>`).join("");el.value=state.day}
+fillDays($("todayDay"));fillDays($("workoutDay"));
+function switchTab(tab){document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("hidden",p.id!==tab));document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab))}
+document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+$("todayDay").onchange=e=>{state.day=e.target.value;save("day",state.day);$("workoutDay").value=state.day;renderToday();renderWorkout()};
+$("workoutDay").onchange=e=>{state.day=e.target.value;save("day",state.day);$("todayDay").value=state.day;renderToday();renderWorkout()};
+$("openWorkout").onclick=()=>switchTab("workout");
+function renderToday(){$("todayWorkout").textContent=plans[state.day].name;$("todayFocus").textContent=plans[state.day].focus;$("dailyCalories").value=state.nutrition.cal;$("dailyProtein").value=state.nutrition.pro;$("calText").textContent=`${state.nutrition.cal.toLocaleString()} / 2,400 kcal`;$("proText").textContent=`${state.nutrition.pro} / 120 g`;$("calBar").style.width=Math.min(100,state.nutrition.cal/2400*100)+"%";$("proBar").style.width=Math.min(100,state.nutrition.pro/120*100)+"%";$("waterCount").textContent=`${state.water} / 8 glasses`}
+function renderWorkout(){let p=plans[state.day],checks=state.checks[state.day]||[];$("workoutTitle").textContent=p.name;$("workoutFocus").textContent=p.focus;$("workoutCount").textContent=`${checks.length} / ${p.ex.length}`;$("workoutBar").style.width=(checks.length/p.ex.length*100)+"%";$("exerciseList").innerHTML=p.ex.map((x,i)=>`<div class="exercise ${checks.includes(i)?"done":""}"><input type="checkbox" id="ex${i}" data-i="${i}" ${checks.includes(i)?"checked":""}><label for="ex${i}"><b>${x[0]}</b><div class="small">${x[1]}</div></label></div>`).join("");$("exerciseList").querySelectorAll("input").forEach(c=>c.onchange=()=>{let arr=state.checks[state.day]||[];state.checks[state.day]=c.checked?[...new Set([...arr,+c.dataset.i])]:arr.filter(i=>i!==+c.dataset.i);save("checks",state.checks);renderWorkout()})}
+$("saveNutrition").onclick=()=>{state.nutrition={cal:Math.max(0,+$("dailyCalories").value||0),pro:Math.max(0,+$("dailyProtein").value||0)};save("nutrition",state.nutrition);renderToday()};
+$("waterPlus").onclick=()=>{state.water=Math.min(30,state.water+1);save("water",state.water);renderToday()};
+$("waterMinus").onclick=()=>{state.water=Math.max(0,state.water-1);save("water",state.water);renderToday()};
+$("completeWorkout").onclick=()=>{state.sessions.unshift({date:new Date().toLocaleDateString(),day:state.day,exercises:(state.checks[state.day]||[]).length,total:plans[state.day].ex.length});save("sessions",state.sessions);renderHistory();alert("Session saved. Great work—recover well.")};
+$("resetWorkout").onclick=()=>{state.checks[state.day]=[];save("checks",state.checks);renderWorkout()};
+$("addMeal").onclick=()=>{let name=$("mealName").value.trim();if(!name)return;let m={name,cal:Math.max(0,+$("mealCal").value||0),pro:Math.max(0,+$("mealPro").value||0)};state.meals.push(m);state.nutrition.cal+=m.cal;state.nutrition.pro+=m.pro;save("meals",state.meals);save("nutrition",state.nutrition);$("mealName").value="";$("mealCal").value=0;$("mealPro").value=0;renderMeals();renderToday()};
+function renderMeals(){$("mealList").innerHTML=state.meals.map((m,i)=>`<div class="mealrow row"><div><b>${escapeHtml(m.name)}</b><div class="small">${m.cal} kcal · ${m.pro} g protein</div></div><button class="danger" data-remove="${i}">Remove</button></div>`).join("");$("mealList").querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{let m=state.meals[+b.dataset.remove];state.nutrition.cal=Math.max(0,state.nutrition.cal-m.cal);state.nutrition.pro=Math.max(0,state.nutrition.pro-m.pro);state.meals.splice(+b.dataset.remove,1);save("meals",state.meals);save("nutrition",state.nutrition);renderMeals();renderToday()})}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+$("saveCheckin").onclick=()=>{state.checkins.unshift({date:new Date().toLocaleDateString(),weight:+$("weight").value||65,waist:$("waist").value,notes:$("notes").value,cal:state.nutrition.cal,pro:state.nutrition.pro});save("checkins",state.checkins);renderHistory();alert("Progress check-in saved on this device.")};
+function renderHistory(){$("checkinList").innerHTML=state.checkins.length?state.checkins.map(c=>`<div class="logrow"><div class="row"><b>${c.date}</b><b>${c.weight} kg</b></div><div class="small">${c.waist?`Waist ${c.waist} cm · `:""}${c.cal} kcal · ${c.pro} g protein</div>${c.notes?`<p>${escapeHtml(c.notes)}</p>`:""}</div>`).join(""):'<p class="muted">No check-ins yet.</p>';$("sessionList").innerHTML=state.sessions.length?state.sessions.map(s=>`<div class="logrow">${s.date} · ${s.day} · ${s.exercises}/${s.total} exercises</div>`).join(""):'No completed sessions yet.'}
+$("exportData").onclick=()=>{const data={exportedAt:new Date().toISOString(),state};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="atlas-fitness-backup.json";a.click();URL.revokeObjectURL(a.href)};
+renderToday();renderWorkout();renderMeals();renderHistory();
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body></html>
